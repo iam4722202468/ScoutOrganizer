@@ -1,0 +1,28 @@
+body
+{
+	padding: 50px
+}
+
+.tooltip-inner {
+    font-size: 14px;
+}
+
+tr td:nth-child(1) {
+	padding-left:10px;
+	position:absolute;
+}
+
+tr td:nth-child(1):hover {
+	cursor: pointer;
+}
+
+.taken
+{
+	background: gray;
+}
+
+table {
+    width: 100%;
+    border-collapse:separate; 
+	border-spacing:2em;
+}

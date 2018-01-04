@@ -1,0 +1,51 @@
+extends layout
+
+block content
+	script(src='/javascripts/jquery.min.js')
+	script(src='/javascripts/bootstrap.min.js')
+	link(rel='stylesheet', href='/stylesheets/Bootstrap/bootstrap.css')
+	link(rel='stylesheet', href='/stylesheets/index.css')
+	
+	script.
+		$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});
+	
+	b Mississauga-Wellington Area 2016 Winter Camp – Barber Scout Camp<br /><br />
+	p
+		| Each group is required to run at least one activity.  For groups with 3 or more Scouters, please sign up for two or more activities.  Saturday only groups are also included in this.<br /><br />
+		| There are three categories of activities: Fun, Scouting Skills, and Highland Game themed. Points will be awarded for participation levels, interest and enthusiasm, and, where there is some measurement, a score.<br /><br />
+		| There is flexibility in how the event is run.  The Scouters may vary the way the activity is run from the description.  Feel free to use your own interpretation.<br /><br />
+		| Groups can run events not listed here.  Please send an e-mail with description to Jeff Parent at <a href="mailto:jeff.r.parent@gmail.com">jeff.r.parent@gmail.com</a><br /><br />
+		| Safety is extremely important.  For the ‘heavy’ activities, weighted items should be something a typical youth can lift or throw but still be challenging.  They should be padded, or made out of foam, plastic or similar materials.  For example, please don’t bring a real sledge hammer for the hammer throw.
+	
+	#error
+		if error !== undefined
+		|	!{error}
+	
+	table
+		tr
+			th
+				|Event Name
+			th
+				|Leader Name
+			th
+				|Group Name
+		- for (var i = 0; i < eventList.length; i++)
+			if tableData[i][0] == ""
+				tr
+					td(data-toggle="tooltip", title=tooltip[i]) #{eventList[i]}
+					
+					form(action="/", method="post")
+						td
+							input.form-control(type='text', name=i)
+						td
+							input.form-control(type='text', name=i)
+						td
+							input.btn.btn-primary.btn-block(type='submit', value='submit')
+			else
+				tr
+					td(class="taken", data-toggle="tooltip", title=tooltip[i]) #{eventList[i]}
+					
+					td
+						input.form-control(type='text', name=i, disabled="disabled" placeholder=tableData[i][0])
+					td
+						input.form-control(type='text', name=i, disabled="disabled" placeholder=tableData[i][1])
